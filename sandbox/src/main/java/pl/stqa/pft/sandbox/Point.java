@@ -1,3 +1,5 @@
+package pl.stqa.pft.sandbox;
+
 public class Point {
 
 double x;
