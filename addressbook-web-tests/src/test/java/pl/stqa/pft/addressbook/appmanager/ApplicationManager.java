@@ -3,7 +3,6 @@ package pl.stqa.pft.addressbook.appmanager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -13,6 +12,7 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
+    private ContactHelper contactHelper;
 
     public void init() {
         WebDriverManager.chromedriver().setup();
@@ -22,6 +22,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(driver);
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
+        contactHelper = new ContactHelper(driver);
         sessionHelper.login("admin", "secret");
     }
 
@@ -37,4 +38,6 @@ public class ApplicationManager {
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
     }
+
+    public ContactHelper getContactHelper() {return contactHelper;}
 }
