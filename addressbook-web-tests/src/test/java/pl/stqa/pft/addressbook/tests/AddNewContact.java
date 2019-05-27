@@ -1,4 +1,4 @@
-package pl.stqa.pft.addressbook;
+package pl.stqa.pft.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import pl.stqa.pft.addressbook.model.ContactData;
 
 public class AddNewContact {
   private WebDriver driver;
@@ -65,24 +66,6 @@ public class AddNewContact {
   public void tearDown() throws Exception {
     logout();
     driver.quit();
-  }
-
-  private boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
   }
 
 }
