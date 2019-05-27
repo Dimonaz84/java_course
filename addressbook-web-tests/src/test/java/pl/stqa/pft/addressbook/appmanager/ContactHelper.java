@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void goToContactCreation() {
-        driver.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
 
