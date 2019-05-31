@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void goToContactCreation() {
-        click(By.linkText("add new"));
+        click(By.xpath("//a[(.='add new')]"));
     }
 
     public void openContactForm() {
