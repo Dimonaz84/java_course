@@ -26,7 +26,7 @@ public class ApplicationManager {
 
     public void init() {
 
-        if (browser == BrowserType.CHROME) {
+        if (browser.equals(BrowserType.CHROME)) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (browser.equals(BrowserType.FIREFOX)) {
