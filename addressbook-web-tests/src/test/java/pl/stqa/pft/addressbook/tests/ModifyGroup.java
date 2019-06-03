@@ -3,7 +3,7 @@ package pl.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.GroupData;
 
-public class GroupModificationTests extends TestBase{
+public class ModifyGroup extends TestBase{
 
     @Test
     public void testGroupModification() {
