@@ -1,5 +1,8 @@
-.gradle
-/build/
+addressbook-web-tests/.gradle/
+addressbook-web-tests/build/
+sandbox/build/
+sandbox/.gradle/
+
 .idea
 *.class
 
