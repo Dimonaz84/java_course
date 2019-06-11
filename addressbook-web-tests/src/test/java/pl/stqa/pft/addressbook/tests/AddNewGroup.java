@@ -5,7 +5,6 @@ import org.testng.annotations.*;
 import pl.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class AddNewGroup extends TestBase {

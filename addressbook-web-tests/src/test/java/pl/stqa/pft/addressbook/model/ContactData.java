@@ -1,6 +1,9 @@
 package pl.stqa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class ContactData {
+    private int id;
     private final String firstname;
     private final String lastname;
     private final String title;
@@ -31,6 +34,46 @@ public class ContactData {
         this.birth_day = birth_day;
         this.birth_month = birth_month;
         this.birth_year = birth_year;
+    }
+
+    public ContactData(int id, String firstname, String lastname, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.company = company;
+        this.address = address;
+        this.homePhone = homePhone;
+        this.mobilePhone = mobilePhone;
+        this.email = email;
+        this.email2 = email2;
+        this.email3 = email3;
+        this.address2 = address2;
+        this.birth_day = birth_day;
+        this.birth_month = birth_month;
+        this.birth_year = birth_year;
+    }
+
+   public ContactData(int id, String firstname, String lastname) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = null;
+        this.company = null;
+        this.address = null;
+        this.homePhone = null;
+        this.mobilePhone = null;
+        this.email = null;
+        this.email2 = null;
+        this.email3 = null;
+        this.address2 = null;
+        this.birth_day = null;
+        this.birth_month = null;
+        this.birth_year = null;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstname() {
@@ -87,5 +130,24 @@ public class ContactData {
 
     public String getBirth_year() {
         return birth_year;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return id == that.id &&
+                Objects.equals(firstname, that.firstname) &&
+                Objects.equals(lastname, that.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstname, lastname);
     }
 }
