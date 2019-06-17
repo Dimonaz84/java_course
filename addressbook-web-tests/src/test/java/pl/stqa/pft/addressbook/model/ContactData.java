@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class ContactData {
     private int id;
-    private final String firstname;
-    private final String lastname;
+    private final String firstName;
+    private final String lastName;
     private final String title;
     private final String company;
     private final String address;
@@ -19,9 +19,9 @@ public class ContactData {
     private final String birth_month;
     private final String birth_year;
 
-    public ContactData(String firstname, String lastname, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public ContactData(String firstName, String lastName, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.title = title;
         this.company = company;
         this.address = address;
@@ -36,10 +36,10 @@ public class ContactData {
         this.birth_year = birth_year;
     }
 
-    public ContactData(int id, String firstname, String lastname, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
+    public ContactData(int id, String firstName, String lastName, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.title = title;
         this.company = company;
         this.address = address;
@@ -54,10 +54,10 @@ public class ContactData {
         this.birth_year = birth_year;
     }
 
-   public ContactData(int id, String firstname, String lastname) {
+   public ContactData(int id, String firstName, String lastName) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.title = null;
         this.company = null;
         this.address = null;
@@ -76,12 +76,12 @@ public class ContactData {
         return id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getTitle() {
@@ -142,12 +142,12 @@ public class ContactData {
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
         return id == that.id &&
-                Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname);
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstname, lastname);
+        return Objects.hash(id, firstName, lastName);
     }
 }
