@@ -3,74 +3,75 @@ package pl.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
+
     private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String title;
-    private final String company;
-    private final String address;
-    private final String homePhone;
-    private final String mobilePhone;
-    private final String email;
-    private final String email2;
-    private final String email3;
-    private final String address2;
-    private final String birth_day;
-    private final String birth_month;
-    private final String birth_year;
+    private String firstName;
+    private String lastName;
+    private String title;
+    private String company;
+    private String address;
+    private String homePhone;
+    private String mobilePhone;
+    private String email;
+    private String email2;
+    private String email3;
+    private String address2;
+    private String birth_day;
+    private String birth_month;
+    private String birth_year;
 
-    public ContactData(String firstName, String lastName, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.homePhone = homePhone;
-        this.mobilePhone = mobilePhone;
-        this.email = email;
-        this.email2 = email2;
-        this.email3 = email3;
-        this.address2 = address2;
-        this.birth_day = birth_day;
-        this.birth_month = birth_month;
-        this.birth_year = birth_year;
-    }
+//    public ContactData(String firstName, String lastName, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.title = title;
+//        this.company = company;
+//        this.address = address;
+//        this.homePhone = homePhone;
+//        this.mobilePhone = mobilePhone;
+//        this.email = email;
+//        this.email2 = email2;
+//        this.email3 = email3;
+//        this.address2 = address2;
+//        this.birth_day = birth_day;
+//        this.birth_month = birth_month;
+//        this.birth_year = birth_year;
+//    }
 
-    public ContactData(int id, String firstName, String lastName, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.homePhone = homePhone;
-        this.mobilePhone = mobilePhone;
-        this.email = email;
-        this.email2 = email2;
-        this.email3 = email3;
-        this.address2 = address2;
-        this.birth_day = birth_day;
-        this.birth_month = birth_month;
-        this.birth_year = birth_year;
-    }
+//    public ContactData(int id, String firstName, String lastName, String title, String company, String address, String homePhone, String mobilePhone, String email, String email2, String email3, String address2, String birth_day, String birth_month, String birth_year) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.title = title;
+//        this.company = company;
+//        this.address = address;
+//        this.homePhone = homePhone;
+//        this.mobilePhone = mobilePhone;
+//        this.email = email;
+//        this.email2 = email2;
+//        this.email3 = email3;
+//        this.address2 = address2;
+//        this.birth_day = birth_day;
+//        this.birth_month = birth_month;
+//        this.birth_year = birth_year;
+//    }
 
-   public ContactData(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.title = null;
-        this.company = null;
-        this.address = null;
-        this.homePhone = null;
-        this.mobilePhone = null;
-        this.email = null;
-        this.email2 = null;
-        this.email3 = null;
-        this.address2 = null;
-        this.birth_day = null;
-        this.birth_month = null;
-        this.birth_year = null;
-    }
+//   public ContactData(int id, String firstName, String lastName) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.title = null;
+//        this.company = null;
+//        this.address = null;
+//        this.homePhone = null;
+//        this.mobilePhone = null;
+//        this.email = null;
+//        this.email2 = null;
+//        this.email3 = null;
+//        this.address2 = null;
+//        this.birth_day = null;
+//        this.birth_month = null;
+//        this.birth_year = null;
+    //}
 
     public int getId() {
         return id;
@@ -132,8 +133,79 @@ public class ContactData {
         return birth_year;
     }
 
-    public void setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactData withAddress2(String address2) {
+        this.address2 = address2;
+        return this;
+    }
+
+    public ContactData withBirth_day(String birth_day) {
+        this.birth_day = birth_day;
+        return this;
+    }
+
+    public ContactData withBirth_month(String birth_month) {
+        this.birth_month = birth_month;
+        return this;
+    }
+
+    public ContactData withBirth_year(String birth_year) {
+        this.birth_year = birth_year;
+        return this;
     }
 
     @Override
@@ -150,4 +222,5 @@ public class ContactData {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName);
     }
+
 }
