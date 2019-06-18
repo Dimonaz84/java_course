@@ -14,7 +14,7 @@ public class AddNewContact extends TestBase{
     Contacts before = app.contact().all();
     ContactData contact = new ContactData()
             .withFirstName("Dmitriy").withLastName("Naydyonov").withTitle("Mr.").withCompany("Test Company")
-            .withAddress("Some test address").withHomePhone("123456789").withMobilePhone("987654321")
+            .withAddress("Some test address").withHomePhone("123456789").withMobilePhone("987654321").withWorkPhone("128746789")
             .withEmail("dmitriy.naydenov@gmail.com").withEmail2("dmitriy.naydenov1@gmail.com")
             .withEmail3("dmitriy.naydenov2@gmail.com").withAddress2("Krakow").withBirth_day("6").withBirth_month("September").withBirth_year("1984");
     app.contact().create(contact);

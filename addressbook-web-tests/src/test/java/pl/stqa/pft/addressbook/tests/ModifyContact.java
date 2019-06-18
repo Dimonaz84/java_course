@@ -15,7 +15,7 @@ public class ModifyContact extends TestBase{
    public void checkPreconditions() {
        if(app.contact().all().size() == 0) {
            app.contact().create(new ContactData().withFirstName("Dmitriy").withLastName("Naydyonov").withTitle("Mr.").withCompany("Test Company")
-                   .withAddress("Some test address").withHomePhone("123456789").withMobilePhone("987654321")
+                   .withAddress("Some test address").withHomePhone("123456789").withMobilePhone("987654321").withWorkPhone("089745623")
                    .withEmail("dmitriy.naydenov@gmail.com").withEmail2("dmitriy.naydenov1@gmail.com")
                    .withEmail3("dmitriy.naydenov2@gmail.com").withAddress2("Krakow").withBirth_day("6").withBirth_month("September").withBirth_year("1984"));
        }
@@ -27,7 +27,7 @@ public class ModifyContact extends TestBase{
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("modifiedDmitriy").withLastName("modifiedNaydyonov").withTitle("modifiedMr.").withCompany("modifiedTest Company")
-                .withAddress("modifiedSome test address").withHomePhone("modified123456789").withMobilePhone("modified987654321")
+                .withAddress("modifiedSome test address").withHomePhone("modified123456789").withMobilePhone("modified987654321").withWorkPhone("127676789")
                 .withEmail("modifieddmitriy.naydenov@gmail.com").withEmail2("modifieddmitriy.naydenov1@gmail.com")
                 .withEmail3("modifieddmitriy.naydenov2@gmail.com").withAddress2("modifiedKrakow").withBirth_day("7").withBirth_month("October").withBirth_year("1985");
         app.contact().modify(contact);

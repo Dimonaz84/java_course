@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import pl.stqa.pft.addressbook.model.ContactData;
 import pl.stqa.pft.addressbook.model.Contacts;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -28,6 +26,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
@@ -82,8 +81,29 @@ public class ContactHelper extends HelperBase{
             int id = Integer.parseInt(element.findElement(By.xpath(".//input[@name='selected[]']")).getAttribute("value"));
             String lastName = element.findElement(By.xpath(".//input[@name='selected[]']/following::td[1]")).getText();
             String firstName = element.findElement(By.xpath(".//input[@name='selected[]']/following::td[2]")).getText();
-            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+            String address = element.findElement(By.xpath(".//input[@name='selected[]']/following::td[3]")).getText();
+            String allEmails = element.findElement(By.xpath(".//input[@name='selected[]']/following::td[4]")).getText();
+            String allPhones = element.findElement(By.xpath(".//input[@name='selected[]']/following::td[5]")).getText();
+            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
+            .withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address));
         }
         return contacts;
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        openContactFormById(contact.getId());
+        String firstName = driver.findElement(By.name("firstname")).getAttribute("value");
+        String lastName = driver.findElement(By.name("lastname")).getAttribute("value");
+        String home = driver.findElement(By.name("home")).getAttribute("value");
+        String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
+        String work = driver.findElement(By.name("work")).getAttribute("value");
+        String email = driver.findElement(By.name("email")).getAttribute("value");
+        String email2 = driver.findElement(By.name("email2")).getAttribute("value");
+        String email3 = driver.findElement(By.name("email3")).getAttribute("value");
+        String address = driver.findElement(By.name("address")).getAttribute("value");
+        driver.navigate().back();
+        return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+                .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
     }
 }

@@ -1,13 +1,16 @@
 package pl.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.ContactData;
-import pl.stqa.pft.addressbook.model.Contacts;
 
-public class DeleteContact extends TestBase{
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class ContactEmailTest extends TestBase {
     @BeforeMethod
     public void checkPreconditions() {
         if(app.contact().all().size() == 0) {
@@ -19,14 +22,17 @@ public class DeleteContact extends TestBase{
     }
 
     @Test
-    public void testDeleteContact() {
-        Contacts before = app.contact().all();
-        ContactData deletedContact = before.iterator().next();
-        app.contact().delete(deletedContact);
-        Contacts after = app.contact().all();
-        Assert.assertEquals(after.size(), before.size() - 1);
+    public void testContactEmais() {
+        app.goTo().homePage();
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        before.remove(deletedContact);
-        Assert.assertEquals(before, after);
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    }
+
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining("\n"));
     }
 }
