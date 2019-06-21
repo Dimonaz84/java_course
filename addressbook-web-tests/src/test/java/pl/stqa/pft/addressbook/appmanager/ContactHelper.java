@@ -34,6 +34,7 @@ public class ContactHelper extends HelperBase{
         new Select(driver.findElement(By.name("bday"))).selectByVisibleText(contactData.getBirth_day());
         new Select(driver.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBirth_month());
         type(By.name("byear"), contactData.getBirth_year());
+        attach(By.name("photo"), contactData.getPhoto());
     }
 
     public void goToContactCreation() {
