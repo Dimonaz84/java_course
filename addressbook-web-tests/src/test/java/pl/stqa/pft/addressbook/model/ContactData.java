@@ -43,8 +43,9 @@ public class ContactData {
     private String birth_month;
     @Expose
     private String birth_year;
-    @Expose
     private File photo;
+    @Expose
+    private String filePath;
 
     public int getId() {
         return id;
@@ -118,6 +119,10 @@ public class ContactData {
 
     public File getPhoto() {
         return photo;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public ContactData withId(int id) {
@@ -212,6 +217,11 @@ public class ContactData {
 
     public ContactData withPhoto(File photo) {
         this.photo = photo;
+        return this;
+    }
+
+    public ContactData withFilePath(File photo) {
+        this.filePath = photo.getAbsolutePath();
         return this;
     }
 

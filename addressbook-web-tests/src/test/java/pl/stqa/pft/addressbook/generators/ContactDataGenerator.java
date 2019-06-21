@@ -58,7 +58,7 @@ public class ContactDataGenerator {
                     .withEmail2(String.format("email2@email.com")).withEmail3(String.format("email@email3.com"))
                     .withCompany(String.format("TestCompany")).withBirth_day(String.format("6"))
                     .withBirth_month(String.format("September")).withBirth_year(String.format("1984"))
-                    .withPhoto(photo));
+                    .withPhoto(photo).withFilePath(photo));
         }
         return contacts;
     }

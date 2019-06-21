@@ -34,6 +34,12 @@ public class HelperBase {
         }
     }
 
+    protected void attachByPath(By locator, String filePath) {
+        if (filePath != null && filePath != "") {
+            driver.findElement(locator).sendKeys(filePath);
+        }
+    }
+
     public boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
