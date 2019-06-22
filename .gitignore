@@ -3,7 +3,9 @@ addressbook-web-tests/build/
 sandbox/build/
 sandbox/.gradle/
 
-.idea
+.idea/*
+*.log
+
 *.class
 
 # Ignore Gradle GUI config

@@ -15,7 +15,7 @@
     "birth_day": "6",
     "birth_month": "September",
     "birth_year": "1984",
-    "filePath": "/Users/naydonod/java_course/addressbook-web-tests/src/test/resources/mypic.jpg"
+    "filePath": "C:\\Users\\Dimonaz\\IdeaProjects\\java_course\\addressbook-web-tests\\src\\test\\resources\\mypic.jpg"
   },
   {
     "firstName": "firstName 1",
@@ -33,7 +33,7 @@
     "birth_day": "6",
     "birth_month": "September",
     "birth_year": "1984",
-    "filePath": "/Users/naydonod/java_course/addressbook-web-tests/src/test/resources/mypic.jpg"
+    "filePath": "C:\\Users\\Dimonaz\\IdeaProjects\\java_course\\addressbook-web-tests\\src\\test\\resources\\mypic.jpg"
   },
   {
     "firstName": "firstName 2",
@@ -51,6 +51,6 @@
     "birth_day": "6",
     "birth_month": "September",
     "birth_year": "1984",
-    "filePath": "/Users/naydonod/java_course/addressbook-web-tests/src/test/resources/mypic.jpg"
+    "filePath": "C:\\Users\\Dimonaz\\IdeaProjects\\java_course\\addressbook-web-tests\\src\\test\\resources\\mypic.jpg"
   }
 ]
