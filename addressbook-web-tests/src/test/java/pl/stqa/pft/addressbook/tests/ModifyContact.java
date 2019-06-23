@@ -14,10 +14,22 @@ public class ModifyContact extends TestBase{
    @BeforeMethod
    public void checkPreconditions() {
        if(app.contact().all().size() == 0) {
-           app.contact().create(new ContactData().withFirstName("Dmitriy").withLastName("Naydyonov").withTitle("Mr.").withCompany("Test Company")
-                   .withAddress("Some test address").withHomePhone("123456789").withMobilePhone("987654321").withWorkPhone("089745623")
-                   .withEmail("dmitriy.naydenov@gmail.com").withEmail2("dmitriy.naydenov1@gmail.com")
-                   .withEmail3("dmitriy.naydenov2@gmail.com").withAddress2("Krakow").withBirth_day("6").withBirth_month("September").withBirth_year("1984"));
+           app.contact().create(new ContactData()
+                   .withFirstName(app.properties.getProperty("contact.firstName"))
+                   .withLastName(app.properties.getProperty("contact.lastName"))
+                   .withTitle(app.properties.getProperty("contact.title"))
+                   .withCompany(app.properties.getProperty("contact.company"))
+                   .withAddress(app.properties.getProperty("contact.address"))
+                   .withHomePhone(app.properties.getProperty("contact.homePhone"))
+                   .withMobilePhone(app.properties.getProperty("contact.mobilePhone"))
+                   .withWorkPhone(app.properties.getProperty("contact.workPhone"))
+                   .withEmail(app.properties.getProperty("contact.email"))
+                   .withEmail2(app.properties.getProperty("contact.email2"))
+                   .withEmail3(app.properties.getProperty("contact.email3"))
+                   .withAddress2(app.properties.getProperty("contact.address2"))
+                   .withBirth_day(app.properties.getProperty("contact.birthDay"))
+                   .withBirth_month(app.properties.getProperty("contact.birthMonth"))
+                   .withBirth_year(app.properties.getProperty("contact.birthYear")));
        }
    }
 
@@ -26,10 +38,23 @@ public class ModifyContact extends TestBase{
 
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
-        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("modifiedDmitriy").withLastName("modifiedNaydyonov").withTitle("modifiedMr.").withCompany("modifiedTest Company")
-                .withAddress("modifiedSome test address").withHomePhone("modified123456789").withMobilePhone("modified987654321").withWorkPhone("127676789")
-                .withEmail("modifieddmitriy.naydenov@gmail.com").withEmail2("modifieddmitriy.naydenov1@gmail.com")
-                .withEmail3("modifieddmitriy.naydenov2@gmail.com").withAddress2("modifiedKrakow").withBirth_day("7").withBirth_month("October").withBirth_year("1985");
+        ContactData contact = new ContactData()
+                .withId(modifiedContact.getId())
+                .withFirstName(app.properties.getProperty("contact.modifiedFirstName"))
+                .withLastName(app.properties.getProperty("contact.modifiedLastName"))
+                .withTitle(app.properties.getProperty("contact.modifiedTitle"))
+                .withCompany(app.properties.getProperty("contact.modifiedCompany"))
+                .withAddress(app.properties.getProperty("contact.modifiedAddress"))
+                .withHomePhone(app.properties.getProperty("contact.modifiedHomePhone"))
+                .withMobilePhone(app.properties.getProperty("contact.modifiedMobilePhone"))
+                .withWorkPhone(app.properties.getProperty("contact.modifiedWorkPhone"))
+                .withEmail(app.properties.getProperty("contact.modifiedEmail"))
+                .withEmail2(app.properties.getProperty("contact.modifiedEmail2"))
+                .withEmail3(app.properties.getProperty("contact.modifiedEmail3"))
+                .withAddress2(app.properties.getProperty("contact.modifiedAddress2"))
+                .withBirth_day(app.properties.getProperty("contact.modifiedBirthDay"))
+                .withBirth_month(app.properties.getProperty("contact.modifiedBirthMonth"))
+                .withBirth_year(app.properties.getProperty("contact.modifiedBirthYear"));
         app.contact().modify(contact);
         Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());
