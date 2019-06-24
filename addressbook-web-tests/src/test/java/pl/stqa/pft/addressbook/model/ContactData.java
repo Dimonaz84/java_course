@@ -221,7 +221,7 @@ public class ContactData {
     }
 
     public ContactData withFilePath(File photo) {
-        this.filePath = photo.getAbsolutePath();
+        this.filePath = photo.getPath();
         return this;
     }
 
