@@ -47,7 +47,6 @@ public class ContactDataGenerator {
     }
 
     private List<ContactData> generateContacts(int count) {
-        File photo = new File("src/test/resources/mypic.jpg");
         List<ContactData> contacts = new ArrayList<>();
         for (int i = 0; i < count; i++){
             contacts.add(new ContactData().withId(i).withFirstName(String.format("firstName %s", i))
@@ -58,14 +57,16 @@ public class ContactDataGenerator {
                     .withEmail2(String.format("email2@email.com")).withEmail3(String.format("email@email3.com"))
                     .withCompany(String.format("TestCompany")).withBirth_day(String.format("6"))
                     .withBirth_month(String.format("September")).withBirth_year(String.format("1984"))
-                    .withPhoto(photo).withFilePath(photo));
+                    .withPhoto("src/test/resources/mypic.jpg"));
         }
         return contacts;
     }
 
     private void saveAsJSON(List<ContactData> contacts, File file) throws IOException {
+        System.out.println(new File(".").getAbsolutePath());
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json = gson.toJson(contacts);
+        System.out.println(file);
         Writer writer = new FileWriter(file);
         writer.write(json);
         writer.close();

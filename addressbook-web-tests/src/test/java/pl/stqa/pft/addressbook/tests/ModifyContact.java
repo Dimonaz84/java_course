@@ -29,14 +29,15 @@ public class ModifyContact extends TestBase{
                    .withAddress2(app.properties.getProperty("contact.address2"))
                    .withBirth_day(app.properties.getProperty("contact.birthDay"))
                    .withBirth_month(app.properties.getProperty("contact.birthMonth"))
-                   .withBirth_year(app.properties.getProperty("contact.birthYear")));
+                   .withBirth_year(app.properties.getProperty("contact.birthYear"))
+                   .withPhoto(app.properties.getProperty("contact.photo")));
        }
    }
 
     @Test
     public void testContactModification() {
 
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData()
                 .withId(modifiedContact.getId())
@@ -54,9 +55,10 @@ public class ModifyContact extends TestBase{
                 .withAddress2(app.properties.getProperty("contact.modifiedAddress2"))
                 .withBirth_day(app.properties.getProperty("contact.modifiedBirthDay"))
                 .withBirth_month(app.properties.getProperty("contact.modifiedBirthMonth"))
-                .withBirth_year(app.properties.getProperty("contact.modifiedBirthYear"));
+                .withBirth_year(app.properties.getProperty("contact.modifiedBirthYear"))
+                .withPhoto(app.properties.getProperty("contact.photo"));
         app.contact().modify(contact);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size());
 
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));

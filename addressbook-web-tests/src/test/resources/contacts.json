@@ -15,6 +15,6 @@
     "birth_day": "6",
     "birth_month": "September",
     "birth_year": "1984",
-    "filePath": "src/test/resources/mypic.jpg"
+    "photo": "src/test/resources/mypic.jpg"
   }
 ]

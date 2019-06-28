@@ -14,7 +14,7 @@ public class ContactPhoneTest extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        if(app.contact().all().size() == 0) {
+        if(app.db().contacts().size() == 0) {
             app.contact().create(new ContactData()
                     .withFirstName(app.properties.getProperty("contact.firstName"))
                     .withLastName(app.properties.getProperty("contact.lastName"))
@@ -30,7 +30,8 @@ public class ContactPhoneTest extends TestBase {
                     .withAddress2(app.properties.getProperty("contact.address2"))
                     .withBirth_day(app.properties.getProperty("contact.birthDay"))
                     .withBirth_month(app.properties.getProperty("contact.birthMonth"))
-                    .withBirth_year(app.properties.getProperty("contact.birthYear")));
+                    .withBirth_year(app.properties.getProperty("contact.birthYear"))
+                    .withPhoto(app.properties.getProperty("contact.photo")));
         }
     }
 

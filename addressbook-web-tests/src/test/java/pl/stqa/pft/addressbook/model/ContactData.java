@@ -5,7 +5,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.File;
 import java.util.Objects;
 
 @Entity
@@ -79,9 +78,6 @@ public class ContactData {
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
-    @Expose
-    @Transient
-    private String filePath;
 
     public int getId() {
         return id;
@@ -153,12 +149,8 @@ public class ContactData {
         return birth_year;
     }
 
-    public File getPhoto() {
-        return new File(photo);
-    }
-
-    public String getFilePath() {
-        return filePath;
+    public String getPhoto() {
+        return photo;
     }
 
     public ContactData withId(int id) {
@@ -251,13 +243,8 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withPhoto(File photo) {
-        this.photo = photo.getPath();
-        return this;
-    }
-
-    public ContactData withFilePath(File photo) {
-        this.filePath = photo.getPath();
+    public ContactData withPhoto(String photo) {
+        this.photo = photo;
         return this;
     }
 
@@ -277,11 +264,24 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName);
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(company, that.company) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(address2, that.address2) &&
+                Objects.equals(homePhone, that.homePhone) &&
+                Objects.equals(mobilePhone, that.mobilePhone) &&
+                Objects.equals(workPhone, that.workPhone) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(email2, that.email2) &&
+                Objects.equals(email3, that.email3) &&
+                Objects.equals(birth_day, that.birth_day) &&
+                Objects.equals(birth_month, that.birth_month) &&
+                Objects.equals(birth_year, that.birth_year);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, title, company, address, address2, homePhone, mobilePhone, workPhone, email, email2, email3, birth_day, birth_month, birth_year);
     }
 }
