@@ -25,6 +25,7 @@ public class ApplicationManager {
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private String browser;
+    private DBHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -39,6 +40,8 @@ public class ApplicationManager {
             System.out.println("Configuration file not found!");
             System.exit(1);
         }
+
+        dbHelper = new DBHelper();
 
         if (browser.equals(BrowserType.CHROME)) {
             WebDriverManager.chromedriver().setup();
@@ -80,4 +83,6 @@ public class ApplicationManager {
     }
 
     public ContactHelper contact() {return contactHelper;}
+
+    public DBHelper db() { return dbHelper;}
 }

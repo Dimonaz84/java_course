@@ -2,49 +2,85 @@ package pl.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
+
+@Entity
+@Table(name = "addressbook")
 
 public class ContactData {
 
     @XStreamAlias("contact")
-
+    @Id
+    @Column(name = "id")
     private int id;
     @Expose
+    @Column(name = "firstname")
     private String firstName;
     @Expose
+    @Column(name = "lastname")
     private String lastName;
     @Expose
+    @Column(name = "title")
     private String title;
     @Expose
+    @Column(name = "company")
     private String company;
     @Expose
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
     @Expose
+    @Column(name = "address2")
+    @Type(type = "text")
     private String address2;
     @Expose
+    @Column(name = "home")
+    @Type(type = "text")
     private String homePhone;
     @Expose
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobilePhone;
     @Expose
+    @Column(name = "work")
+    @Type(type = "text")
     private String workPhone;
+    @Transient
     private String allPhones;
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String email;
     @Expose
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
     @Expose
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
+    @Transient
     private String allEmails;
     @Expose
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bday", columnDefinition = "TINYINT")
+    @Type(type = "text")
     private String birth_day;
     @Expose
+    @Column(name = "bmonth")
     private String birth_month;
     @Expose
+    @Column(name = "byear")
     private String birth_year;
-    private File photo;
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
     @Expose
+    @Transient
     private String filePath;
 
     public int getId() {
@@ -118,7 +154,7 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public String getFilePath() {
@@ -216,13 +252,22 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
     public ContactData withFilePath(File photo) {
         this.filePath = photo.getPath();
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 
     @Override
