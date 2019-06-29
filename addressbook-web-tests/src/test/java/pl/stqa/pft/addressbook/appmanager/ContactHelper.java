@@ -1,11 +1,17 @@
 package pl.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import pl.stqa.pft.addressbook.model.ContactData;
 import pl.stqa.pft.addressbook.model.Contacts;
+import pl.stqa.pft.addressbook.model.Groups;
+
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -35,6 +41,10 @@ public class ContactHelper extends HelperBase{
         new Select(driver.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBirth_month());
         type(By.name("byear"), contactData.getBirth_year());
         attach(By.name("photo"), contactData.getPhoto());
+        if (contactData.getGroups().size() > 0){
+            Assert.assertTrue(contactData.getGroups().size() == 1);
+            new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+        }
     }
 
     public void goToContactCreation() {
@@ -106,5 +116,15 @@ public class ContactHelper extends HelperBase{
         return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
                 .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
+    }
+
+    public void waitForContactDeletion (){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.msgbox")));
+        } catch (NoSuchElementException e){
+            System.out.println("Contact was not deleted!");
+            System.exit(1);
+        }
     }
 }

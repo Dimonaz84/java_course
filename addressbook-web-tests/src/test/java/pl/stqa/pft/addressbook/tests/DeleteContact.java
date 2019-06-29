@@ -37,7 +37,7 @@ public class DeleteContact extends TestBase{
         Contacts before = app.db().contacts();
         ContactData deletedContact = before.iterator().next();
         app.contact().delete(deletedContact);
-        Thread.sleep(1000); //wait until deprecated field is updated
+        app.contact().waitForContactDeletion();
         Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size() - 1);
 
