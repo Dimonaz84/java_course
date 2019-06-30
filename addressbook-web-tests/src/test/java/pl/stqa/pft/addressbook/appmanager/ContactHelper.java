@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pl.stqa.pft.addressbook.model.ContactData;
 import pl.stqa.pft.addressbook.model.Contacts;
-import pl.stqa.pft.addressbook.model.Groups;
+import pl.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -19,6 +19,8 @@ public class ContactHelper extends HelperBase{
     public ContactHelper (WebDriver driver){
         super(driver);
     }
+
+    WebDriverWait wait = new WebDriverWait(driver, 10);
 
     public void submitNewContact() {
         click(By.xpath("//input[@value='Enter']"));
@@ -63,7 +65,7 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//input[@value='Update']"));
     }
 
-    public void deleteContact() {
+    public void clickToDeleteContact() {
         click(By.xpath("//input[@value='Delete']"));
         driver.switchTo().alert().accept();
     }
@@ -82,7 +84,7 @@ public class ContactHelper extends HelperBase{
 
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
-        deleteContact();
+        clickToDeleteContact();
     }
 
     public Contacts all() {
@@ -119,12 +121,32 @@ public class ContactHelper extends HelperBase{
     }
 
     public void waitForContactDeletion (){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.msgbox")));
         } catch (NoSuchElementException e){
             System.out.println("Contact was not deleted!");
-            System.exit(1);
+            System.exit(-1);
+        }
+    }
+
+    public void addToGroup (ContactData contact, GroupData group){
+
+        selectContactById(contact.getId());
+        new Select(driver.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
+        driver.findElement(By.xpath("//input[@value='Add to']")).click();
+    }
+
+    public void deleteFromGroup (int contactId, int groupId){
+
+        new Select(driver.findElement(By.name("group"))).selectByValue(Integer.toString(groupId));
+        driver.findElement(By.xpath("//input[@id=" + contactId + "]")).click();
+        driver.findElement(By.name("remove")).click();
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.msgbox")));
+        } catch (NoSuchElementException e) {
+            System.out.println("Contact was not removed!");
+            System.exit(-1);
         }
     }
 }

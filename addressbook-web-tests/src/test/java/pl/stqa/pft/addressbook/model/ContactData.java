@@ -3,7 +3,6 @@ package pl.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;

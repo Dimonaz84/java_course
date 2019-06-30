@@ -4,12 +4,18 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.ContactData;
-import pl.stqa.pft.addressbook.model.Contacts;
+import pl.stqa.pft.addressbook.model.GroupData;
+import pl.stqa.pft.addressbook.model.Groups;
 
-public class DeleteContact extends TestBase{
+public class AddContactToGroup extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName(app.properties.getProperty("group.Name")));
+        }
+
         if(app.db().contacts().size() == 0) {
             app.contact().create(new ContactData()
                     .withFirstName(app.properties.getProperty("contact.firstName"))
@@ -32,15 +38,28 @@ public class DeleteContact extends TestBase{
     }
 
     @Test
-    public void testDeleteContact() throws InterruptedException {
-        Contacts before = app.db().contacts();
-        ContactData deletedContact = before.iterator().next();
-        app.contact().delete(deletedContact);
-        app.contact().waitForContactDeletion();
-        Contacts after = app.db().contacts();
-        Assert.assertEquals(after.size(), before.size() - 1);
+    public void addContactToGroup() {
 
-        before.remove(deletedContact);
-        Assert.assertEquals(before, after);
+        ContactData contact = app.db().contacts().iterator().next(); //SELECTING CONTACT
+
+        Groups groups = app.db().groups();
+        GroupData freeGroup = app.db().findFreeGroup(groups, contact.getId()); //GET ID OF A GROUP THAT CURRENT CONTACT IS NOT YET ASSIGNED TO
+
+        if (freeGroup == null){                                   //CHECK IF CONTACT IS ALREADY ADDED TO ALL GROUPS
+            GroupData extraGroup = new GroupData().withName("Extra group"); //ADD NEW GROUP
+            app.goTo().groupPage();
+            app.group().create(extraGroup);
+            extraGroup.withId(app.db().getNewGroupId());      //CHANGING GROUP ID TO ID OF NEWLY CREATED GROUP
+            contact.inGroup(extraGroup);                      //ADD CONTACT TO NEWLY CREATED GROUP
+            app.goTo().homePage();
+            app.contact().addToGroup(contact, extraGroup);   //CHECK CONTACT IS ADDED
+
+            Assert.assertTrue(app.db().isContactAdded(contact,extraGroup));
+
+        } else {
+            contact.inGroup(freeGroup);
+            app.contact().addToGroup(contact, freeGroup);                    //ADD CONTACT TO FREE GROUP
+            Assert.assertTrue(app.db().isContactAdded(contact,freeGroup));   //CHECK CONTACT IS ADDED
+        }
     }
 }

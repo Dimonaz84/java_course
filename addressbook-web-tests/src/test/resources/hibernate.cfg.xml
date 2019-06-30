@@ -37,6 +37,7 @@
         <!-- Names the annotated entity class -->
         <mapping class="pl.stqa.pft.addressbook.model.GroupData"/>
         <mapping class="pl.stqa.pft.addressbook.model.ContactData"/>
+        <mapping class="pl.stqa.pft.addressbook.model.RelationData"/>
 
     </session-factory>
 
