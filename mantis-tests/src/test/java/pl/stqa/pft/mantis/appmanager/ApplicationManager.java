@@ -25,6 +25,10 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private DBHelper dbHelper;
+    private SessionHelper sessionHelper;
+    private NavigationHelper navigationHelper;
+    private UserHelper userHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -39,11 +43,21 @@ public class ApplicationManager {
             System.out.println("Configuration file not found!");
             System.exit(1);
         }
+
+        sessionHelper = new SessionHelper(this);
     }
 
     public void stop() {
         if (driver != null)
         driver.quit();
+    }
+
+    public void login() {
+        sessionHelper.login(properties.getProperty("web.username"), properties.getProperty("web.password"));
+    }
+
+    public void logout() {
+        sessionHelper.logout();
     }
 
     public HttpSession newSession() {
@@ -102,5 +116,26 @@ public class ApplicationManager {
         if (jamesHelper == null) {
             jamesHelper = new JamesHelper(this);
         } return jamesHelper;
+    }
+
+    public DBHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DBHelper(this);
+        }
+        return dbHelper;
+    }
+
+    public NavigationHelper goTo() {
+        if (navigationHelper == null) {
+            navigationHelper = new NavigationHelper(this);
+        }
+        return navigationHelper;
+    }
+
+    public UserHelper user() {
+        if (userHelper == null) {
+            userHelper = new UserHelper(this);
+        }
+        return userHelper;
     }
 }

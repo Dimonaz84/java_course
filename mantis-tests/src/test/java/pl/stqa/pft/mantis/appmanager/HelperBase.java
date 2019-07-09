@@ -5,9 +5,6 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-
 public class HelperBase {
 
     protected WebDriver driver;
@@ -30,14 +27,6 @@ public class HelperBase {
                 driver.findElement(locator).clear();
                 driver.findElement(locator).sendKeys(text);
             }
-        }
-    }
-
-    protected void attach(By locator, String filePath) {
-        if (filePath != null && filePath != ""){
-            Path rel = FileSystems.getDefault().getPath(filePath);
-            Path abs = rel.toAbsolutePath();
-            driver.findElement(locator).sendKeys(abs.toString());
         }
     }
 
