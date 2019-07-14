@@ -35,11 +35,11 @@ public class ResetPasswordTest extends TestBase {
         }
 
         UserData user = app.db().getUsers().iterator().next();
-        app.login();
+        app.session().login(app.getProperty("web.username"),app.getProperty("web.password"));
         app.goTo().manageUsers();
         app.user().selectUser(user.getUserName());
         app.user().clickResetPassword();
-        app.logout();
+        app.session().logout();
         List<MailMessage> mailMessages =  app.mail().waitForMail(1, 10000);
         String resetLink = app.mail().findLinkFromMail(mailMessages, user.getEmail());
         app.user().resetPassword(resetLink, newPassword);

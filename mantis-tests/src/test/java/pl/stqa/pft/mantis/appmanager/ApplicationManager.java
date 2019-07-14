@@ -29,6 +29,7 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private UserHelper userHelper;
+    private SoapHelper soapHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -43,21 +44,11 @@ public class ApplicationManager {
             System.out.println("Configuration file not found!");
             System.exit(1);
         }
-
-        sessionHelper = new SessionHelper(this);
     }
 
     public void stop() {
         if (driver != null)
         driver.quit();
-    }
-
-    public void login() {
-        sessionHelper.login(properties.getProperty("web.username"), properties.getProperty("web.password"));
-    }
-
-    public void logout() {
-        sessionHelper.logout();
     }
 
     public HttpSession newSession() {
@@ -137,5 +128,19 @@ public class ApplicationManager {
             userHelper = new UserHelper(this);
         }
         return userHelper;
+    }
+
+    public SoapHelper soap() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
+    }
+
+    public SessionHelper session() {
+        if (sessionHelper == null) {
+            sessionHelper = new SessionHelper(this);
+        }
+        return sessionHelper;
     }
 }
