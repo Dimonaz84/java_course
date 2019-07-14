@@ -38,8 +38,6 @@ public class SoapHelper {
         issueData.setDescription(issue.getDescription());
         issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()), issue.getProject().getName()));
         issueData.setCategory(categories[0]);
-        mantisConnectPort.mc_issue_add
-                (app.properties.getProperty("web.username"), app.properties.getProperty("web.password"), issueData);
         BigInteger issueId = mantisConnectPort.mc_issue_add(app.properties.getProperty("web.username"), app.properties.getProperty("web.password"), issueData);
         IssueData createdIssueData = mantisConnectPort.mc_issue_get(app.properties.getProperty("web.username"), app.properties.getProperty("web.password"), issueId);
         return new Issue().withId(createdIssueData.getId().intValue())
