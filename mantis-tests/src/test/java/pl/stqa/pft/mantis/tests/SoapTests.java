@@ -1,16 +1,21 @@
 package pl.stqa.pft.mantis.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.stqa.pft.mantis.model.Issue;
 import pl.stqa.pft.mantis.model.Project;
-
 import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Set;
 
 public class SoapTests extends TestBase{
+
+    @BeforeTest
+    public void checkBugStatus() throws RemoteException, ServiceException, MalformedURLException {
+        skipIfNotFixed(Integer.parseInt(app.properties.getProperty("soap.issueId")));
+    }
 
     @Test
     public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
