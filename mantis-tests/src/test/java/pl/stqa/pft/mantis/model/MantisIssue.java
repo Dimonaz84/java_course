@@ -1,6 +1,6 @@
 package pl.stqa.pft.mantis.model;
 
-public class Issue {
+public class MantisIssue {
 
     private int id;
     private String summary;
@@ -23,22 +23,22 @@ public class Issue {
         return project;
     }
 
-    public Issue withId(int id) {
+    public MantisIssue withId(int id) {
         this.id = id;
         return this;
     }
 
-    public Issue withSummary(String summary) {
+    public MantisIssue withSummary(String summary) {
         this.summary = summary;
         return this;
     }
 
-    public Issue withDescription(String description) {
+    public MantisIssue withDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public Issue withProject(Project project) {
+    public MantisIssue withProject(Project project) {
         this.project = project;
         return this;
     }
