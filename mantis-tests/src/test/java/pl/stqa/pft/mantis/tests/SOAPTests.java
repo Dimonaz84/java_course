@@ -13,8 +13,8 @@ import java.util.Set;
 public class SOAPTests extends TestBase{
 
     @BeforeTest
-    public void checkBugStatus() throws RemoteException, ServiceException, MalformedURLException {
-        skipIfNotFixed(Integer.parseInt(app.properties.getProperty("soap.issueId")));
+    public void checkBugStatus() throws ServiceException, MalformedURLException {
+        skipIfMantisNotFixed(Integer.parseInt(app.properties.getProperty("mantis.issueId")));
     }
 
     @Test
