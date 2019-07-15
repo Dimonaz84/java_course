@@ -35,7 +35,7 @@ public class RESTHelper {
 
     public Set<BugifyIssue> getIssues() throws IOException {
 
-        String json = getExecutor().execute(Request.Get(app.properties.getProperty("bugify.apiURL") + "/issues.json")).returnContent().asString();
+        String json = getExecutor().execute(Request.Get(app.properties.getProperty("bugify.apiURL") + "/issues.json?limit=500")).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
         return new Gson().fromJson(issues, new TypeToken<Set<BugifyIssue>>(){}.getType());
@@ -44,7 +44,6 @@ public class RESTHelper {
     public String getIssueStatus(int issueId) throws IOException {
         String json = getExecutor().execute(Request.Get(app.properties.getProperty("bugify.apiURL") + "/issues/" + issueId + ".json")).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json).getAsJsonObject().getAsJsonArray("issues").get(0);
-        String status = parsed.getAsJsonObject().get("state_name").getAsString();
-        return status;
+        return parsed.getAsJsonObject().get("state_name").getAsString();
     }
 }
