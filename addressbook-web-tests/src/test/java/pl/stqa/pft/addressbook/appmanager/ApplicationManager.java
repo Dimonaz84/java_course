@@ -36,7 +36,7 @@ public class ApplicationManager {
     }
 
     public void init() throws MalformedURLException {
-        String target = System.getProperty("target", "local");
+        String target = System.getProperty("target", "remote");
         try {
             properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         } catch (IOException e) {
@@ -63,7 +63,8 @@ public class ApplicationManager {
                 driver = new InternetExplorerDriver(capabilities);
             } else if (browser.equals(BrowserType.SAFARI)) {
                 driver = new SafariDriver();
-            } else {
+            }
+        } else {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName(browser);
                 driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
@@ -76,7 +77,6 @@ public class ApplicationManager {
             navigationHelper = new NavigationHelper(driver);
             contactHelper = new ContactHelper(driver);
             sessionHelper.login(properties.getProperty("web.username"), properties.getProperty("web.password"));
-        }
     }
 
     public void stop() {
