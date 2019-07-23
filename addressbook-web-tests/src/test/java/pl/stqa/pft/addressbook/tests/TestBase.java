@@ -12,6 +12,7 @@ import pl.stqa.pft.addressbook.model.GroupData;
 import pl.stqa.pft.addressbook.model.Groups;
 
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class TestBase {
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     @BeforeSuite(alwaysRun = true)
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         app.init();
     }
 
